@@ -1,0 +1,69 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>{{ title }}</title>
+        <link rel="icon" href="{% static 'images/logo.png' %}" />
+        <link
+            type="text/css"
+            rel="stylesheet"
+            href="{% static 'bootstrap/css/bootstrap.min.css' %}"
+        />
+        <link
+            type="text/css"
+            rel="stylesheet"
+            href="{% static 'css/base.css' %}"
+        />
+    </head>
+
+    <body class="d-flex flex-column h-100">
+        <!-- HERO -->
+        <div
+            class="d-flex flex-column align-items-center p-3 text-bg-success text-center"
+        >
+            <a
+                class="d-flex justify-content-center align-items-center gap-1 text-reset text-decoration-none mb-1"
+                href="/"
+            >
+                <img
+                    src="{% static 'images/logo.png' %}"
+                    class="img-logo img-thumbnail"
+                    alt="Logo"
+                    author="https://www.flaticon.com/ru/authors/freepik"
+                />
+                <h1 class="display-1">Ingry</h1>
+            </a>
+            <h5>Помощник в составлении нужного рациона</h5>
+        </div>
+
+        <!-- HEADER -->
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <div class="container-fluid">
+                <ul class="navbar-nav">
+                    {% for m in menu %}
+                    <li class="nav-item">
+                        <a
+                            class="nav-link {% if active_menu_url_name == m.url_name %} active {% endif %}"
+                            href="{% url m.url_name %}"
+                            >{{ m.title }}</a
+                        >
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </nav>
+
+        <!-- MAIN -->
+        <main class="container-fluid py-4 px-5">
+            {% block content %}{% endblock %}
+        </main>
+
+        <!-- FOOTER -->
+        <div class="footer mt-auto py-3 text-bg-dark text-center">
+            <p>Footer</p>
+        </div>
+    </body>
+</html>

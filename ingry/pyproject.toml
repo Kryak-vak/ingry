@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "ingry"
+version = "0.1.0"
+description = ""
+authors = ["kryak_vak <mr.vakashev@mail.ru>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+django = "^5.0.6"
+djangorestframework = "^3.15.1"
+django-extensions = "^3.2.3"
+psycopg2 = "^2.9.9"
+ipython = "^8.26.0"
+drf-spectacular = "^0.27.2"
+pillow = "^10.4.0"
+django-environ = "^0.11.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

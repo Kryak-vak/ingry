@@ -1,0 +1,33 @@
+{% extends 'base.html' %} {% block content %}
+<form class="container" method="post" action="" enctype="multipart/form-data">
+    {% csrf_token %}
+    
+    {% if form.non_field_errors %}
+    <div class="alert alert-danger">
+        <strong>Non-field error:</strong> {{ form.non_field_errors }}
+    </div>
+    {% endif %}
+
+    {% include 'ingredients/include/forms/default_input.html' with field=form.name %}
+    {% include 'ingredients/include/forms/default_input.html' with field=form.category %}
+    {% include 'ingredients/include/forms/default_input.html' with field=form.image %}
+    <div class="container p-0 py-2 my-3 border-top">
+        {% include 'ingredients/include/forms/default_input.html' with field=form.weight %}
+        <div class="container p-0">
+            <div class="row row-cols-3 row-cols-lg-6">
+                {% include 'ingredients/include/forms/default_input.html' with field=form.calories %}
+                {% include 'ingredients/include/forms/default_input.html' with field=form.proteins %}
+                {% include 'ingredients/include/forms/default_input.html' with field=form.fats %}
+                {% include 'ingredients/include/forms/default_input.html' with field=form.carbohydrates %}
+                {% include 'ingredients/include/forms/default_input.html' with field=form.sugars %}
+                {% include 'ingredients/include/forms/default_input.html' with field=form.fiber %}
+                {% include 'ingredients/include/forms/default_input.html' with field=form.sodium %}
+            </div>
+        </div>
+        {% include 'ingredients/include/forms/json_input.html' with field=form.vitamins %}
+        {% include 'ingredients/include/forms/json_input.html' with field=form.minerals %}
+    </div>
+
+    <button type="submit" class="btn btn-primary">Добавить</button>
+</form>
+{% endblock %}
