@@ -27,13 +27,12 @@ def show_ingredient(request, ingredient_slug):
 
 
 def add_ingredient(request):
-    print(f'{request.method = }')
     if request.method == 'POST':
         form = AddIngredientForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             
-            redirect('add_ingredient')
+            return redirect('add_ingredient')
     else:
         form = AddIngredientForm()
     
@@ -45,3 +44,11 @@ def add_ingredient(request):
 
     return render(request, 'ingredients/add_ingredient.html', context)
 
+
+def delete_ingredient(request, ingredient_id):
+    # TODO check user auth, forbid global ingredient deletion
+
+    ingredient = Ingredient.objects.filter(pk=ingredient_id)
+    ingredient.delete()
+
+    return redirect('ingredients')

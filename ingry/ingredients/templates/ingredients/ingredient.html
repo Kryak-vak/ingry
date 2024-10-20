@@ -8,4 +8,9 @@
 <div>{{ ingredient.category }}</div>
 <div>{{ ingredient.calories }}</div>
 <img src="{{ ingredient.image.url }}">
+
+<form class="container" method="get" action="/delete_ingredient/{{ ingredient.id }}">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Удалить ингредиент</button>
+</form>
 {% endblock %}
