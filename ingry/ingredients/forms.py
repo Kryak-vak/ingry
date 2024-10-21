@@ -1,4 +1,5 @@
 from django import forms
+from django.core.exceptions import ValidationError
 
 from .models import Ingredient
 
@@ -22,3 +23,11 @@ class AddIngredientForm(forms.ModelForm):
             'vitamins': forms.NumberInput(attrs={'class': 'form-control form-control-sm'}),
             'minerals': forms.NumberInput(attrs={'class': 'form-control form-control-sm'}),
         }
+    
+    def clean_name(self):
+        name = self.cleaned_data['name']
+        
+        if Ingredient.objects.filter(name__iexact=name).exists():
+            raise ValidationError("Название должно быть уникальным, без учета регистра")
+        
+        return name
