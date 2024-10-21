@@ -28,7 +28,7 @@ class Ingredient(models.Model):
     minerals = models.JSONField(blank=True, null=True, default=dict, verbose_name='Минералы')
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.name)
+        self.slug = slugify(self.name, self.pk, Ingredient)
         super(Ingredient, self).save(*args, **kwargs)
 
     def get_absolute_url(self) -> str:

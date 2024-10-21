@@ -1,4 +1,5 @@
 from django.template.defaultfilters import slugify as django_slugify
+from django.db.models import Model
 
 menu = [
     {'title': 'Главная', 'url_name': 'ingredients'},
@@ -12,5 +13,10 @@ alphabet = {'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd', 'е': 'e', '�
             'у': 'u', 'ф': 'f', 'х': 'h', 'ц': 'ts', 'ч': 'ch', 'ш': 'sh', 'щ': 'shch', 'ы': 'y', 'э': 'e', 'ю': 'yu',
             'я': 'ya'}
 
-def slugify(s):
-    return django_slugify(''.join(alphabet.get(w, w) for w in s.lower()))
+def slugify(text: str, pk: int, model: Model) -> str:
+    slug = django_slugify(''.join(alphabet.get(w, w) for w in text.lower()))
+
+    slug_queryset = model.objects.filter(slug=slug).exclude(pk=pk)
+    suffix = '' if len(slug_queryset) == 0 else f'-{len(slug_queryset)}'
+    
+    return f'{slug}{suffix}'
