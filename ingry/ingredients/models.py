@@ -16,7 +16,7 @@ class Ingredient(models.Model):
     slug = models.fields.SlugField(max_length=255, unique=True, db_index=True, verbose_name='Slug')
     category = models.CharField(choices=IngridientTypes, verbose_name='Категория')
     image = models.ImageField(default='', upload_to='ingredients', verbose_name='Картинка')
-    weight = models.IntegerField(default=0, verbose_name='Вес')
+    weight = models.IntegerField(default=0, verbose_name='Вес (гр)')
     calories = models.fields.DecimalField(max_digits=5, decimal_places=2, blank=True, default=0, verbose_name='Калории')
     proteins = models.fields.DecimalField(max_digits=5, decimal_places=2, blank=True, default=0, verbose_name='Протеины')
     fats = models.fields.DecimalField(max_digits=5, decimal_places=2, blank=True, default=0, verbose_name='Жиры')
