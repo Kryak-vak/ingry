@@ -1,0 +1,21 @@
+version: "3.9"
+
+services:
+  fastapi:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    image: ingry-backend-image
+    container_name: ingry-backend-dev
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend/app:/app/app
+    command: ["uvicorn", "app.main:app", "--reload", "--host", "0.0.0.0", "--port", "8000"]
+    environment:
+      - PYTHONUNBUFFERED=1
+    # Optional: Persist uv cache to improve rebuild speed
+    tmpfs:
+      - /root/.cache/uv
