@@ -6,7 +6,7 @@ from fastapi import Depends
 from sqlmodel import Session
 
 from app.core.db import engine
-from app.service import BaseService
+from app.service.base import BaseService
 
 
 ServiceType = TypeVar('ServiceType', bound=BaseService)

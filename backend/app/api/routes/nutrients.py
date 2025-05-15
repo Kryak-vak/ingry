@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends
 
 from app.api.deps import service_dep
-from app.service import NutrientService
+from app.service.nutrients import NutrientService
 from app.models import Nutrient, NutrientPublic, NutrientCreate, NutrientUpdate, Message
 
 
