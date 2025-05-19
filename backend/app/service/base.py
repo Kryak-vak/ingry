@@ -3,7 +3,7 @@ from typing import TypeVar, Generic, Type
 
 from sqlmodel import Session
 
-from app.repository import BaseRepository
+from app.repository.base import BaseRepository
 
 
 RepositoryType = TypeVar('RepositoryType', bound=BaseRepository)

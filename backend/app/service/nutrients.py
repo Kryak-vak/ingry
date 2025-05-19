@@ -1,5 +1,5 @@
 from .base import BaseService
-from app.repository import NutrientRepository, Nutrient, NutrientCreate, NutrientUpdate
+from app.repository.nutrients import NutrientRepository, Nutrient, NutrientCreate, NutrientUpdate
 from app.exceptions import NutrientNotFound 
 
 
